@@ -71,6 +71,8 @@ The third column tells you, in plain English, *when to reach for it*.
 | `constraint-analysis` | Bottlenecks, throughput, queue theory | "Where is the bottleneck *really*?" — before optimising the wrong thing |
 | `information-flow-analysis` | Loss, noise, ambiguity, compression, propagation | Tracking how information degrades as it moves through layers, logs, dashboards, and people |
 | `entropy-and-code-rot` | Thermodynamics — entropy, free energy, reversibility | Reasoning about decay, drift, why "we'll fix it later" is asymmetric, the cost of not maintaining |
+| `littles-law-reasoning` | Queueing theory — L = λW, utilization curve, service demand | Sizing pools, diagnosing tail latency, deciding if the right lever is more concurrency, less service time, or class separation |
+| `contagion-and-r0` | Epidemiology — transmission, R0, super-spreaders, contact tracing | A CVE, leaked secret, viral bug, or bad pattern that can spread through deps, identities, or copy-paste |
 
 ### 🛡️ Reliability & operations
 
@@ -90,6 +92,7 @@ The third column tells you, in plain English, *when to reach for it*.
 | `recipe-rescue` | Live triage during execution failures | Mid-incident — decide whether to keep going, patch in place, or roll back |
 | `pickling-and-preservation` | Snapshots, archives, frozen schemas | Designing snapshots, audit logs, frozen schemas, archival formats — what's preserved vs lost |
 | `pharmacological-dosing` | Dose-response, half-life, titration | Tuning rate limits, retry budgets, feature flag rollouts — start low, go slow, watch for steady state |
+| `reversibility-principle` | Art conservation — minimum intervention, retreatability, original vs accretion | Refactors, migrations, "cleanup" PRs, or any edit to code you didn't author and don't fully understand |
 
 ### 🎨 Design & human factors
 
@@ -101,6 +104,7 @@ The third column tells you, in plain English, *when to reach for it*.
 | `cognitive-load-review` | Working memory, chunking, mental model fit | Code/API/doc that *feels* hard — measure why and reduce the load |
 | `distributed-cognition-review` | Knowledge across code, docs, tools, tests, rituals | Asking where knowledge lives — and whether it survives if a person, doc, or tool disappears |
 | `incentive-analysis` | How users/maintainers/attackers respond to rules | Before launching a metric, default, rule, or reward — predict how people game it |
+| `mechanism-design` | Game theory — engineer rules so the dominant strategy is cooperation | Designing quotas, rate limits, auctions, retry policies, or any protocol used by independent self-interested parties |
 | `user-context-fieldwork` | Real workflows, hidden norms, workarounds, friction | Before redesigning a workflow — investigate what users actually do, not what they say they do |
 | `code-narrative-review` | Readability, conceptual flow, naming, API story | Reviewing complex code for whether it tells a coherent story to the next reader |
 
@@ -162,6 +166,12 @@ The third column tells you, in plain English, *when to reach for it*.
 | `reverse-engineering` | Black-box / gray-box, behavioral characterization, golden references | Understanding legacy or third-party systems with no spec — disciplined inference from observation |
 | `materials-selection` | Property matrix, Ashby charts, performance index, lifecycle cost | Choosing a tech stack, library, or tool — write the required-vs-desirable properties *before* shopping |
 
+### 🪨 Earth sciences
+
+| Skill | Lens | Reach for it when… |
+|---|---|---|
+| `stratigraphic-reading` | Geology — layered deposition, unconformities, bedrock vs sediment, index fossils | Before refactoring a long-lived file: identify the layers, date them, and find the bedrock so you cut into the right stratum |
+
 ---
 
 ## Skill provenance
@@ -176,6 +186,11 @@ Skills are intentionally drawn from outside CS to import frameworks the field ha
 | Chemistry | `reaction-kinetics-and-catalysis`, `solubility-and-miscibility`, `crystallization-and-nucleation` |
 | Biology / medicine | `evolutionary-pressure`, `immune-system-design`, `apoptosis-and-cell-death`, `symbiosis-and-mutualism`, `differential-diagnosis-debugging`, `pharmacological-dosing` |
 | Engineering / reliability | `failure-mode-effects-analysis`, `feedback-loop-analysis`, `resilience-engineering`, `signal-detection-review`, `mistake-proofing`, `operational-game-day`, `preflight-checklist`, `factor-of-safety`, `tolerance-stack-up`, `fatigue-and-stress-cycling`, `control-systems-pid`, `commissioning-and-decommissioning`, `maintenance-philosophy`, `reverse-engineering`, `materials-selection` |
+| Operations research | `littles-law-reasoning` |
+| Earth sciences | `stratigraphic-reading` |
+| Conservation science | `reversibility-principle` |
+| Epidemiology / public health | `contagion-and-r0` |
+| Game theory / mechanism design | `mechanism-design` |
 | Systems theory / cybernetics | `emergence-analysis`, `systems-archetypes`, `system-ecosystem-analysis`, `network-topology-review`, `constraint-analysis`, `information-flow-analysis` |
 | Cognitive science / HCI | `cognitive-load-review`, `mental-model-alignment`, `distributed-cognition-review`, `attention-design-review`, `affordance-review` |
 | Anthropology / sociology | `user-context-fieldwork`, `incentive-analysis` |
