@@ -14,7 +14,7 @@ Each skill follows the same shape: a framing paragraph, when-to-use triggers wit
 /<skill-name>       # invoke a skill
 ```
 
-Skills are also auto-suggested when their description matches the task. They live at `~/.copilot/skills/<name>/SKILL.md`.
+Skills live at `~/.copilot/skills/<name>/SKILL.md`. The CLI surfaces a small rotating subset of skills to the agent each turn based on session context, so a relevant one may be picked up automatically — but coverage is not guaranteed. Explicit invocation with `/<skill-name>` is the reliable way to engage a specific skill. Keep each skill's `description:` frontmatter trigger-rich, since that is what the auto-surfacing matches against.
 
 ---
 
