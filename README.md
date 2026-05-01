@@ -153,6 +153,12 @@ The third column tells you, in plain English, *when to reach for it*.
 | `pacing-and-energy-budget` | Aerobic/anaerobic, lactate threshold, negative split | Reasoning about *sustainable rate* — recognising you've gone above threshold before you blow up |
 | `form-under-load` | Technique degrades before strength; injuries from bad form | Code quality under deadline — why corners cut under pressure cause the next incident |
 
+### 🧭 Coaching & growth
+
+| Skill | Lens | Reach for it when… |
+|---|---|---|
+| `engineering-coaching` | Deliberate practice + GROW model — evidence-cited SWOT and three behavioural actions | Quarterly self-review, promo prep, 1:1 growth conversation, or peer feedback — when the question is *how to grow*, not *how to grade* |
+
 ### 🔧 Engineering disciplines (mechanical / civil / control / reliability)
 
 | Skill | Lens | Reach for it when… |
@@ -196,6 +202,7 @@ Skills are intentionally drawn from outside CS to import frameworks the field ha
 | Anthropology / sociology | `user-context-fieldwork`, `incentive-analysis` |
 | Finance / economics | `portfolio-theory`, `time-value-of-money`, `optionality-as-value`, `hedging-and-insurance`, `capital-allocation`, `market-microstructure`, `bubble-dynamics` |
 | Sports / fitness | `progressive-overload`, `periodization-and-recovery`, `pacing-and-energy-budget`, `form-under-load` |
+| Coaching pedagogy / deliberate practice | `engineering-coaching` |
 | Culinary | `mise-en-place`, `sequencing-and-temperature`, `taste-as-you-go`, `recipe-rescue`, `pickling-and-preservation` |
 | Hermeneutics / linguistics | `interpretive-reading`, `communication-pragmatics`, `semantic-precision` |
 | Military strategy | `ooda-adaptive-execution`, `premortem-analysis`, `adversarial-design-review` |
