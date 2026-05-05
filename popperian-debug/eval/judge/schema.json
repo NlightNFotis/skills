@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "popperian-debug score record",
+  "type": "object",
+  "required": ["run_id", "task_id", "judge_model", "axis_a", "axis_b", "axis_c", "scores", "rationale"],
+  "properties": {
+    "run_id":      { "type": "string" },
+    "task_id":     { "type": "string" },
+    "judge_model": { "type": "string" },
+    "judge_seed":  { "type": "integer" },
+    "scorer_version": { "type": "string" },
+
+    "axis_a": {
+      "type": "object",
+      "required": ["A1","A2","A3","A4","A5","A6","A7","A8"],
+      "additionalProperties": false,
+      "properties": {
+        "A1": { "$ref": "#/definitions/binary" },
+        "A2": { "$ref": "#/definitions/binary" },
+        "A3": { "$ref": "#/definitions/binary" },
+        "A4": { "$ref": "#/definitions/binary" },
+        "A5": { "$ref": "#/definitions/binary" },
+        "A6": { "$ref": "#/definitions/binary" },
+        "A7": { "$ref": "#/definitions/binary" },
+        "A8": { "$ref": "#/definitions/binary" }
+      }
+    },
+    "axis_b": {
+      "type": "object",
+      "required": ["B1","B2","B3","B4","B5","B6","B7"],
+      "additionalProperties": false,
+      "properties": {
+        "B1": { "$ref": "#/definitions/binary" },
+        "B2": { "$ref": "#/definitions/binary" },
+        "B3": { "$ref": "#/definitions/binary" },
+        "B4": { "$ref": "#/definitions/binary" },
+        "B5": { "$ref": "#/definitions/ternary" },
+        "B6": { "$ref": "#/definitions/binary" },
+        "B7": { "$ref": "#/definitions/binary" }
+      }
+    },
+    "axis_c": {
+      "type": "object",
+      "required": ["C1","C2"],
+      "additionalProperties": false,
+      "properties": {
+        "C1": { "$ref": "#/definitions/binary" },
+        "C2": { "$ref": "#/definitions/binary" }
+      }
+    },
+
+    "scores": {
+      "type": "object",
+      "required": ["process_score","reasoning_score","outcome_score"],
+      "properties": {
+        "process_score":   { "type": "number", "minimum": 0, "maximum": 1 },
+        "reasoning_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "outcome_score":   { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+
+    "rationale": {
+      "type": "object",
+      "description": "Per-item one-sentence justification with transcript citation.",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "definitions": {
+    "binary":  { "type": "number", "enum": [0, 1] },
+    "ternary": { "type": "number", "enum": [0, 0.5, 1] }
+  }
+}

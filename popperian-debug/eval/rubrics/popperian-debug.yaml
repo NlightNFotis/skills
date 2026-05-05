@@ -1,0 +1,147 @@
+skill: popperian-debug
+version: "0.1.0"
+description: |
+  Rubric for scoring an agent's debugging transcript against the
+  popperian-debug skill. Three independent axes; never collapse them.
+
+axes:
+  - id: A
+    name: Process adherence
+    description: |
+      Did the agent follow the structural shape of the workflow? Items are
+      pattern-matchable: presence of facts list, hypothesis count, verdicts.
+      A high A score with low B score is the parroting signature.
+    items:
+      - id: A1
+        name: Reproduction established
+        criterion: |
+          Agent ran the failing repro, or explicitly read its output, before
+          generating any hypothesis. Pass if the transcript shows a tool call
+          that triggers the failure (e.g. running repro.sh / pytest).
+      - id: A2
+        name: Facts collected explicitly
+        criterion: |
+          A discrete fact list (or unambiguous equivalent — bullet points,
+          numbered list, "FACTS:" header) appears before the first hypothesis.
+          Inline "I see X" sprinkled through prose does not count.
+      - id: A3
+        name: Two or more materially distinct hypotheses
+        criterion: |
+          At least two hypotheses, drawn from different categories among
+          {logic, state, timing, environment, upstream, assumption}.
+          Trivial paraphrases of one hypothesis count as one.
+      - id: A4
+        name: Hypotheses ranked with reasoning
+        criterion: |
+          Hypotheses are ordered and each rank is justified against the
+          collected facts (consistency, simplicity, or test cost).
+      - id: A5
+        name: Falsification framing used
+        criterion: |
+          For at least one hypothesis, the agent states what it would expect
+          to observe IF THE HYPOTHESIS WERE WRONG, then tests that prediction.
+          Pure "let me check if H is true" framing fails this item.
+      - id: A6
+        name: One change at a time
+        criterion: |
+          When testing or fixing, the agent does not bundle multiple
+          speculative changes. Refactoring a file while also changing the
+          suspected line fails this item.
+      - id: A7
+        name: Verdicts explicit
+        criterion: |
+          Each tested hypothesis is closed out with DISPROVED, NOT DISPROVED,
+          or INCONCLUSIVE (or unmistakable equivalent).
+      - id: A8
+        name: Fix verified against original repro
+        criterion: |
+          Agent re-runs the original failing case after applying the fix and
+          observes it pass. "Looks right to me" without a re-run fails.
+
+  - id: B
+    name: Reasoning quality
+    description: |
+      Was the thinking actually different, not just the structure? Items
+      require the judge to read content, not just shape. Score 0 on B-items
+      whose A-prerequisite was skipped.
+    items:
+      - id: B1
+        name: Hypothesis diversity is real, not cosmetic
+        criterion: |
+          The hypotheses, if true, would lead to DIFFERENT fixes. Judge
+          writes one sentence on the fix each implies; if two collapse to
+          the same fix, this item fails.
+        prerequisite: A3
+      - id: B2
+        name: Ranking reflects the evidence, not salience
+        criterion: |
+          The top-ranked hypothesis is consistent with ALL stated facts,
+          not just the most recent or most dramatic. If a fact contradicts
+          H1 and is not addressed, fail.
+        prerequisite: A4
+      - id: B3
+        name: A genuinely disconfirming test was attempted
+        criterion: |
+          The test could have produced a result that killed the hypothesis.
+          "I read the code and it looked right" fails. "I removed the
+          suspected line and re-ran" passes.
+        prerequisite: A5
+      - id: B4
+        name: Beliefs updated on new evidence
+        criterion: |
+          When a test produced a surprise (a verdict the agent did not
+          expect), the fact list or hypothesis ranking visibly changed.
+          If no surprises occurred during the run, score 1 by default.
+      - id: B5
+        name: Identified the actual root cause
+        criterion: |
+          Agent's stated root cause matches the known root cause for this
+          task, per the task's solution.md. Partial credit 0.5 if a real
+          contributing factor is found but not the root cause.
+        scoring: ternary  # {0, 0.5, 1}
+      - id: B6
+        name: Avoided named anti-patterns
+        criterion: |
+          No confirmation bias, anchoring on first hypothesis, stacked fixes,
+          or unfalsifiable hypotheses. Judge must cite specific transcript
+          evidence to deduct.
+      - id: B7
+        name: Escape hatch handled correctly
+        criterion: |
+          If the task is trivially obvious (per solution.md trigger-class),
+          agent exits the workflow early. If non-trivial, agent does not
+          exit prematurely.
+
+  - id: C
+    name: Terminal outcome
+    description: |
+      Ground truth. Headline metric. The one that matters.
+    items:
+      - id: C1
+        name: Root cause correct
+        criterion: |
+          Stated root cause matches solution.md.
+      - id: C2
+        name: Fix correct
+        criterion: |
+          Proposed fix would resolve the failing repro without obvious
+          regressions. For high-stakes runs, actually apply the patch and
+          re-run repro.sh; expect post_fix_repro_cmd exit 0.
+
+scoring:
+  process_score:   "sum(A) / 8"
+  reasoning_score: "sum(B) / 7"
+  outcome_score:   "sum(C) / 2"
+  headline:        "outcome_score"
+  diagnostics:
+    - "process_score"
+    - "reasoning_score"
+    - "length_tokens"
+    - "tool_calls"
+    - "cap_hit"
+
+judge:
+  must_be_blind_to_arm: true
+  must_score_axes_independently: true
+  may_use_solution_md: true
+  must_cite_transcript_for_each_item: true
