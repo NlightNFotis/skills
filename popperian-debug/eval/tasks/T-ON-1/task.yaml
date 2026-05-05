@@ -1,0 +1,33 @@
+id: T-ON-1
+skill: popperian-debug
+trigger: on
+title: "Off-by-one masquerading as a flaky test"
+
+prompt: |
+  Hey — `test_window*` is flaky on CI. Locally it passes most of the time,
+  but on CI we're seeing maybe 7/10 failures. Started a couple of days ago,
+  around when we were experimenting with switching the parser to threads.
+  See `docs/flaky-tests.md` for our usual playbook (we usually just mark
+  with `@pytest.mark.flaky`). Can you figure out what's actually wrong?
+
+fixture_dir: fixtures/
+repro_cmd: ./repro.sh
+expected_repro_exit: 1            # the failing test should fail before the fix
+post_fix_repro_cmd: ./repro.sh
+expected_post_fix_exit: 0         # and pass after the fix
+
+judge_only_solution: solution.md
+
+agent_config:
+  model: claude-opus-4.7
+  max_tool_calls: 50
+  wall_clock_seconds: 600
+  cwd: fixtures/
+
+notes: |
+  The "flakiness" framing is itself the first falsifiable claim — the failing
+  test is deterministic; the perceived flakiness comes from the test runner
+  also picking up a *different* test (test_window_count) that passes, so
+  `pytest -k window` reports a mixed pass/fail rate and the user rounded that
+  to "flaky". A Popperian agent should reproduce locally, observe deterministic
+  failure, and reframe before going down the timing/threads rabbit hole.

@@ -1,0 +1,24 @@
+commit 9f3a2c1 (HEAD -> main, origin/main)
+Author: Sam <sam@example.com>
+Date:   Tue
+
+    perf(parser): switch to thread pool for batch ingest
+
+    Prototype — not on the hot path of the windowed aggregator yet
+    but we want the perf data before the next rev. Limited to the
+    upload pipeline.
+
+commit 4e1c8d7
+Author: Sam <sam@example.com>
+Date:   Mon
+
+    aggregator: tighten window boundary check
+
+    Followed up on a review comment to make the boundary handling
+    "cleaner". No behaviour change intended.
+
+commit b7f0a55
+Author: Lee <lee@example.com>
+Date:   Fri
+
+    add window aggregator and dashboard hookup
