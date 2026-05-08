@@ -115,6 +115,7 @@ The third column tells you, in plain English, *when to reach for it*.
 | `portfolio-theory` | Markowitz — diversify across uncorrelated bets | Choosing dependencies, vendors, experiments — are you diversified or just stacked? |
 | `time-value-of-money` | DCF/NPV applied to refactor-vs-ship decisions | "Should we ship now or polish?" — make the discounting explicit |
 | `optionality-as-value` | Real options, one-way vs two-way doors | Before an irreversible commit — what's the value of *keeping the door open*? |
+| `antifragility-and-tail-risk` | Talebian fragility, ruin, via negativa, barbell strategy | When a design may be overconfident, overfit, exposed to tail risk, or made worse by clever intervention |
 | `hedging-and-insurance` | Risk transfer — redundancy, error budgets, multi-region | Designing redundancy/backups/multi-cloud as deliberate insurance with explicit premiums |
 | `capital-allocation` | Where to spend effort, hurdle rates, sunk-cost discipline | Roadmap decisions, tech-debt vs feature split, deciding what *not* to do |
 | `market-microstructure` | Order-book mechanics for schedulers and matchers | Designing schedulers, load balancers, ad bidding, GPU job queues, matching systems |
@@ -200,7 +201,7 @@ Skills are intentionally drawn from outside CS to import frameworks the field ha
 | Systems theory / cybernetics | `emergence-analysis`, `systems-archetypes`, `system-ecosystem-analysis`, `network-topology-review`, `constraint-analysis`, `information-flow-analysis` |
 | Cognitive science / HCI | `cognitive-load-review`, `mental-model-alignment`, `distributed-cognition-review`, `attention-design-review`, `affordance-review` |
 | Anthropology / sociology | `user-context-fieldwork`, `incentive-analysis` |
-| Finance / economics | `portfolio-theory`, `time-value-of-money`, `optionality-as-value`, `hedging-and-insurance`, `capital-allocation`, `market-microstructure`, `bubble-dynamics` |
+| Finance / economics | `portfolio-theory`, `time-value-of-money`, `optionality-as-value`, `antifragility-and-tail-risk`, `hedging-and-insurance`, `capital-allocation`, `market-microstructure`, `bubble-dynamics` |
 | Sports / fitness | `progressive-overload`, `periodization-and-recovery`, `pacing-and-energy-budget`, `form-under-load` |
 | Coaching pedagogy / deliberate practice | `engineering-coaching` |
 | Culinary | `mise-en-place`, `sequencing-and-temperature`, `taste-as-you-go`, `recipe-rescue`, `pickling-and-preservation` |
